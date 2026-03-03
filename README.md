@@ -70,6 +70,56 @@ func SendAlert(n notifier.Notifier, msg string) error {
 
 ---
 
+## Testing
+
+### Run all unit tests (no network required)
+
+```bash
+go test ./... -v
+```
+
+Expected output:
+```
+PASS  github.com/aceextensions/notifier         (4 tests)
+PASS  github.com/aceextensions/notifier/email   (3 tests)
+PASS  github.com/aceextensions/notifier/slack   (3 pass, 1 skipped)
+```
+
+The live Slack test is **skipped by default** — it only runs when you provide a real webhook URL.
+
+---
+
+### Test live Slack notification (sends a real message)
+
+```bash
+SLACK_WEBHOOK_URL="https://hooks.slack.com/services/TXXXXXXX/BXXXXXXX/XXXXXXXXX" \
+  go test ./slack/... -run TestSlack_Send_Live -v
+```
+
+If successful you'll see:
+```
+--- PASS: TestSlack_Send_Live (0.31s)
+    slack_test.go: ✅ Slack message sent successfully!
+```
+
+And a real message will appear in your Slack channel like this:
+
+> **✅ DevOps Autopilot - Test Notification**
+> This is a live test from `github.com/aceextensions/notifier/slack` package.
+> If you see this in Slack, the notifier is working! 🚀
+
+### Other useful test commands
+
+```bash
+go test ./...           # run all tests
+go test ./... -v        # verbose output
+go test ./... -cover    # show test coverage
+go test ./slack/... -v  # test only Slack package
+go test ./email/... -v  # test only Email package
+```
+
+---
+
 ## Package Layout
 
 ```

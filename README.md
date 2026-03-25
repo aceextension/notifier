@@ -2,14 +2,14 @@
 
 A clean, zero-dependency Go package providing a common `Notifier` interface with ready-to-use **Slack** and **Email** implementations.
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aceextensions/notifier.svg)](https://pkg.go.dev/github.com/aceextensions/notifier)
+[![Go Reference](https://pkg.go.dev/badge/github.com/aceextension/notifier.svg)](https://pkg.go.dev/github.com/aceextension/notifier)
 
 ---
 
 ## Install
 
 ```bash
-go get github.com/aceextensions/notifier@latest
+go get github.com/aceextension/notifier@latest
 ```
 
 ---
@@ -19,7 +19,7 @@ go get github.com/aceextensions/notifier@latest
 ### Slack
 
 ```go
-import "github.com/aceextensions/notifier/slack"
+import "github.com/aceextension/notifier/slack"
 
 n := slack.New("https://hooks.slack.com/services/XXX/YYY/ZZZ")
 err := n.Send("Server Alert", "CPU at 95% on prod-01")
@@ -28,7 +28,7 @@ err := n.Send("Server Alert", "CPU at 95% on prod-01")
 ### Email
 
 ```go
-import "github.com/aceextensions/notifier/email"
+import "github.com/aceextension/notifier/email"
 
 n := email.New(email.Config{
     SMTPHost: "smtp.gmail.com",
@@ -45,9 +45,9 @@ err := n.Send("Server Alert", "CPU at 95% on prod-01")
 
 ```go
 import (
-    "github.com/aceextensions/notifier"
-    "github.com/aceextensions/notifier/slack"
-    "github.com/aceextensions/notifier/email"
+    "github.com/aceextension/notifier"
+    "github.com/aceextension/notifier/slack"
+    "github.com/aceextension/notifier/email"
 )
 
 multi := notifier.NewMulti(
@@ -61,7 +61,7 @@ multi.Send("Alert", "Disk is at 92% on prod-01")
 ### Use the interface in your own code
 
 ```go
-import "github.com/aceextensions/notifier"
+import "github.com/aceextension/notifier"
 
 func SendAlert(n notifier.Notifier, msg string) error {
     return n.Send("DevOps Alert", msg)
@@ -80,9 +80,9 @@ go test ./... -v
 
 Expected output:
 ```
-PASS  github.com/aceextensions/notifier         (4 tests)
-PASS  github.com/aceextensions/notifier/email   (3 tests)
-PASS  github.com/aceextensions/notifier/slack   (3 pass, 1 skipped)
+PASS  github.com/aceextension/notifier         (4 tests)
+PASS  github.com/aceextension/notifier/email   (3 tests)
+PASS  github.com/aceextension/notifier/slack   (3 pass, 1 skipped)
 ```
 
 The live Slack test is **skipped by default** — it only runs when you provide a real webhook URL.
@@ -105,7 +105,7 @@ If successful you'll see:
 And a real message will appear in your Slack channel like this:
 
 > **✅ DevOps Autopilot - Test Notification**
-> This is a live test from `github.com/aceextensions/notifier/slack` package.
+> This is a live test from `github.com/aceextension/notifier/slack` package.
 > If you see this in Slack, the notifier is working! 🚀
 
 ### Other useful test commands
@@ -123,9 +123,9 @@ go test ./email/... -v  # test only Email package
 ## Package Layout
 
 ```
-github.com/aceextensions/notifier       ← Notifier interface + Multi dispatcher
-github.com/aceextensions/notifier/slack ← Slack Incoming Webhook
-github.com/aceextensions/notifier/email ← SMTP Email
+github.com/aceextension/notifier       ← Notifier interface + Multi dispatcher
+github.com/aceextension/notifier/slack ← Slack Incoming Webhook
+github.com/aceextension/notifier/email ← SMTP Email
 ```
 
 ---

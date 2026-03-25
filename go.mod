@@ -1,3 +1,3 @@
-module github.com/aceextensions/notifier
+module github.com/aceextension/notifier
 
-go 1.21
+go 1.24.0
